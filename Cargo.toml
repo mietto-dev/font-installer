@@ -6,3 +6,9 @@ authors = ["Felipe Mietto <mietto.ti@gmail.com>"]
 
 [dependencies]
 clap = { version = "4.5.10", features = ["derive"] }
+colored = "2.1.0"
+console = "0.15.8"
+dialoguer = "0.11.0"
+indicatif = "0.17.8"
+rand = "0.8.5"
+sudo_prompt = "0.1.0"

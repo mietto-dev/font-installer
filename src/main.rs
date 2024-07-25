@@ -1,22 +1,19 @@
-use clap::Parser;
+use sudo_prompt::{Opts, SudoPrompt};
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
-#[command(version, about, long_about = None)]
-struct Args {
-    /// Name of the person to greet
-    #[arg(short, long)]
-    name: String,
-
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
-}
+mod commands;
 
 fn main() {
-    let args = Args::parse();
+    // TODO provide "new" method
+    let prompt = SudoPrompt {};
+    let resp = prompt
+        .exec(&Opts {
+            cmd: r#"echo 'Running as root:'"#.to_string(),
+            env: None,
+            name: None,
+        })
+        .unwrap();
 
-    for _ in 0..args.count {
-        println!("Hello {}!", args.name);
-    }
+    println!("{:?}", resp.stdout.unwrap());
 }
+
+// TODO add command stream
